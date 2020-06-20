@@ -1,0 +1,14 @@
+ltspice_1=LTspice2Matlab('inverter_mono.raw');
+V_out= ltspice_1.variable_mat(10,:);
+V_A= ltspice_1.variable_mat(4,:);
+t= ltspice_1.time_vect;
+V=V_A-V_out;
+plot(t,V);
+Ts=(t(end)-t(1))/L;
+fs=1/Ts;
+Y = fft(V);
+P2 = abs(Y/L);
+P1 = P2(1:L/2+1);
+P1(2:end-1) = 2*P1(2:end-1);
+f = fs*(0:(L/2))/L;
+plot(f,P1);

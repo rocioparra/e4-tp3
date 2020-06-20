@@ -1,0 +1,25 @@
+* C:\Users\Juan Martin\Downloads\inverter_mono.asc
+XU1 QAc+ QAc- Vcc QA- MP_01 BOOT QA+ A 0 LTC4446
+D1 Vcc BOOT RFN1L6S
+V1 Vcc 0 15
+V2 QAc+ 0 PULSE(0 5 0 100n 10n 9.9u 20u)
+V3 QAc- 0 PULSE(0 5 10u 100n 10n 9.9u 20u)
+C1 BOOT A 10µ
+V4 N001 0 100
+M1 N001 QA+ A A SPA11N60C3
+M2 A QA- 0 0 SPA11N60C3
+D2 A N001 D
+D3 0 A D
+L1 A N002 1m
+R1 Vo N002 20
+C2 Vo 0 47µ
+C3 N001 Vo 47µ
+.model D D
+.lib C:\Users\Juan Martin\Documents\LTspiceXVII\lib\cmp\standard.dio
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Juan Martin\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 0 25.5m 25m 1u
+.lib LTC4446.sub
+.backanno
+.end

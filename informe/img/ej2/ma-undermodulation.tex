@@ -1,0 +1,61 @@
+\documentclass{standalone}
+
+\input{../plots-preamble}
+
+
+\newcommand{\plotwidth}{12cm}
+\newcommand{\ydist}{1.46cm}
+\newcommand{\plotheight}{1.16cm}
+
+\newcommand{\datapath}{data/ma-undermodulation.txt}
+
+
+\begin{document}
+\begin{tikzpicture} % [trim axis right]
+	%\begin{axis}[ylabel={$i_{a}[\si\ampere]$}]\end{axis}
+	
+	\pgfplotsset{
+		width=\plotwidth, height=\plotheight, % plot dimensions
+		scale only axis, % plot dimensions account only for axis, not labels and such
+		%
+		xmin=0., xmax=0.05, % xlimits
+		xticklabel style={/pgf/number format/fixed,/pgf/number format/precision=4},
+		scaled x ticks=false, % xticks: not scientific notation
+		%xtick={0.14,0.145,0.15,0.155,0.16,0.165,0.17,0.175,0.18},
+	}
+	
+	\begin{axis} [
+			at={(0cm, 2*\ydist)},
+			xticklabels={\empty},
+			ylabel={$[\si\volt]$},
+			no markers,
+		]
+		\addplot table [smooth, x=time, y={V(ctrla)}, each nth point=10] {data/ma-undermodulation.txt};
+		\addplot table [smooth, x=time, y={V(tri)}] {data/ma-undermodulation-V(tri).ds.txt};
+		
+		\legend{$v_{ctrl,a}$, $v_{tri}$}
+	\end{axis}
+	
+	\begin{axis} [
+			at={(0cm, 1*\ydist)},
+			xticklabels={\empty},
+			% ytick={-400, 0, 400},
+			ylabel={$v_{a}[\si\volt]$},
+			no markers,
+		]
+		\addplot table [smooth, x=time, y={V(a)}] {data/ma-undermodulation-V(a).ds.txt};
+	\end{axis}
+
+		
+	\begin{axis} [
+			at={(0cm, 0cm)},
+			%xticklabels={\empty},
+			%ytick={-8, 0, 8},
+			ylabel={$v_{ab}[\si\volt]$},
+			no markers,
+		]
+		\addplot table [x=time, y={V(A,B)}] {data/ma-undermodulation-V(A,B).ds.txt};
+	\end{axis}	
+
+\end{tikzpicture}
+\end{document}

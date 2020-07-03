@@ -1,0 +1,51 @@
+\usepackage[utf8]{inputenc}	% input encoding (enable international characters)
+\usepackage[T1]{fontenc}		% output encoding (allow proper copipasting of international characters)
+
+\usepackage{xcolor}			% color support
+\usepackage{sansmathfonts}	% math font consistent with main document
+\usepackage{pgfplots}		% plots
+\usepackage{tikz} 			% drawing
+
+\usepackage{siunitx}		% international units
+
+\pgfplotsset{compat=1.16} % pgfplot version
+
+
+% custom colors
+\definecolor{myBlue}{rgb}{0.00000,0.44700,0.74100} % matlab-like blue
+\definecolor{myRed}{rgb}{0.85000,0.32500,0.09800} % matlab-like red
+\definecolor{myYellow}{rgb}{0.92900,0.69400,0.12500} % matlab-like yellow
+
+\definecolor{myMagenta}{rgb}{1.00000,0.00000,1.00000} % good-old magenta
+\definecolor{myBlueTHD}{rgb}{0.20810,0.16630,0.52920} % dark blue
+\definecolor{myOrange}{rgb}{0.85000,0.32500,0.09800} % matlab-like orange
+
+% default cycle list for colors
+\pgfplotscreateplotcyclelist{mycolorlist}{
+	{myBlue},
+	{myRed},
+	{myYellow},
+	{myMagenta}
+}
+
+\pgfplotsset{cycle list name = mycolorlist}
+
+
+% other default plot settings (may be overwritten for individual plots)
+\pgfplotsset{
+	% font sizes
+	tick label style={font=\scriptsize}, % font sizes
+	ylabel style={font=\scriptsize},
+	xlabel style={font=\scriptsize},
+	legend style={font=\scriptsize},
+	%
+	% proper alignment of ylabel and ticks
+	yticklabel style={text width=2em,align=right},
+	%
+	% plot style
+	axis background/.style={fill=white}, 
+	xmajorgrids,
+	ymajorgrids,
+	legend pos=north east,
+	every axis/.append style={line width=0.5pt}
+}
